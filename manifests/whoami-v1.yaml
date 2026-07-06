@@ -29,7 +29,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: teste
+  name: whoami
   namespace: teste # Deve estar no mesmo namespace
 spec:
   selector:
@@ -43,7 +43,7 @@ spec:
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: teste
+  name: whoami
   namespace: teste # Deve estar no mesmo namespace
 spec:
   rules:
@@ -54,6 +54,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: teste # Nome do Service criado acima
+            name: whoami # Nome do Service criado acima
             port:
               number: 80
