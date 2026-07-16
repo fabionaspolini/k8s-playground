@@ -1,3 +1,4 @@
+# v2: Sem namespace, assumir o recebido via kubectl apply -n <namespace>
 apiVersion: apps/v1
 kind: Deployment
 metadata:

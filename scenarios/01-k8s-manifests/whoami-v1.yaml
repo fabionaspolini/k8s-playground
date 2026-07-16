@@ -1,3 +1,4 @@
+# v1: Criar namespace e utiliza-lo
 apiVersion: v1
 kind: Namespace
 metadata:
