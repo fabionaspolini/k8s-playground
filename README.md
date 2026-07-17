@@ -1,3 +1,10 @@
+# k8s-playground
+
+- `helm-charts`: Pacotes reutilizáveis via helm.
+- `scenarios`: Cenários de teste para aplicar atualizações no cluster k8s.
+
+
+## Subir container
 
 ```bash
 kubectl \
