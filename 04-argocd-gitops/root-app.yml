@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: root-app
+  namespace: argocd
+  finalizers:
+    # Garante que, se você deletar o root-app, todas as aplicações filhas 
+    # também serão deletadas do cluster (Cascading Delete)
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+  source:
+    repoURL: "https://github.com/fabionaspolini/k8s-playground" # URL do seu repositório GitOps
+    targetRevision: main # Branch (ex: main, master) ou tag
+    path: 04-argocd-gitops/apps # Caminho onde estão os CRDs das aplicações filhas
+    directory:
+      recurse: true # Permite que o ArgoCD leia subpastas (dev, qa, prod) buscando CRDs
+  destination:
+    server: 'https://kubernetes.default.svc' # Aponta para o próprio cluster onde o ArgoCD está rodando
+    namespace: argocd # OBRIGATÓRIO: Os CRDs das aplicações filhas devem existir no namespace do Argo
+  syncPolicy:
+    automated:
+      enabled: true   # Habilita a sincronização automática
+      prune: true     # Remove aplicações filhas do cluster se elas forem apagadas do Git
+      selfHeal: true  # Corrige desvios caso alguém altere o CRD manualmente no cluster
