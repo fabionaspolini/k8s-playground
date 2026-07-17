@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: cadastros
+  name: estoque
   # O Argo CD geralmente roda no namespace 'argocd'
   namespace: argocd
 spec:
