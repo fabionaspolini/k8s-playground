@@ -1,0 +1,26 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: whoami-v1
+  # O Argo CD geralmente roda no namespace 'argocd'
+  # namespace: argocd
+spec:
+  project: default # Projeto padrão do Argo CD
+
+  # 1. ORIGEM: Onde estão os manifestos no Git
+  source:
+    repoURL: 'https://github.com/fabionaspolini/k8s-playground'
+    targetRevision: main # Branch, tag ou commit (ex: main, v1.0)
+    path: scenarios/04-argocd-gitops/manifests/cadastros      # Pasta dentro do repositório onde estão os YAMLs do K8s
+
+  # 2. DESTINO: Para onde o Argo CD vai enviar os recursos
+  destination:
+    server: 'https://kubernetes.default.svc' # O próprio cluster onde o Argo CD está rodando
+    namespace: teste-argocd-v4                  # Namespace de destino do seu app
+
+  # 3. POLÍTICA DE SINCRONIZAÇÃO
+  syncPolicy:
+    automated:
+      prune: true     # Remove do K8s recursos que você apagou do Git
+      selfHeal: true  # Se alguém alterar o cluster manualmente, o Argo CD sobrescreve com o que está no Git
+    createNamespace: true # Cria o namespace 'meu-app-prod' caso ele não exista
