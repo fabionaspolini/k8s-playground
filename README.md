@@ -1,7 +1,7 @@
 # k8s-playground
 
 - `helm-charts`: Pacotes reutilizáveis via helm.
-- `scenarios`: Cenários de teste para aplicar atualizações no cluster k8s.
+- `xx-xxxxxx`: Cenários de uso com stacks diferentes para aplicar atualições no cluster.
 
 
 ## Subir container
