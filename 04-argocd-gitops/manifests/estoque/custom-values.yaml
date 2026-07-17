@@ -1,3 +1,5 @@
+appName: estoque
+
 replicaCount: 3
 
 ingress:

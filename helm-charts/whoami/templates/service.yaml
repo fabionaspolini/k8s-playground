@@ -1,11 +1,11 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: whoami
+  name: {{ .Values.appName }}
   # namespace: teste # Deve estar no mesmo namespace
 spec:
   selector:
-    app: whoami # Deve bater exatamente com o label do Deployment
+    app: {{ .Values.appName }} # Deve bater exatamente com o label do Deployment
   # type: NodePort
   ports:
     - protocol: TCP

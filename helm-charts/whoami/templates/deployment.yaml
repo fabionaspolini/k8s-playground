@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: whoami
+  name: {{ .Values.appName }}
   # namespace: teste
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
-      app: whoami
+      app: {{ .Values.appName }}
   template:
     metadata:
       labels:
-        app: whoami
+        app: {{ .Values.appName }}
     spec:
       containers:
-        - name: whoami
+        - name: {{ .Values.appName }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:

@@ -2,7 +2,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: whoami
+  name: {{ .Values.appName }}
   # namespace: teste # Deve estar no mesmo namespace
 spec:
   rules:
@@ -13,7 +13,7 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: whoami # Nome do Service criado acima
+            name: {{ .Values.appName }} # Nome do Service criado acima
             port:
               number: 80
 {{- end }}
