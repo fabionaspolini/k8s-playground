@@ -6,6 +6,7 @@ metadata:
 spec:
   selector:
     app: whoami # Deve bater exatamente com o label do Deployment
+  # type: NodePort
   ports:
     - protocol: TCP
       port: 80 # Porta exposta pelo Service
