@@ -4,6 +4,10 @@ metadata:
   name: fiscal
   # O Argo CD geralmente roda no namespace 'argocd'
   namespace: argocd
+  finalizers:
+    # Garante que, se você deletar o root-app, todas as aplicações filhas também serão deletadas do cluster (Cascading Delete).
+    # Para funcionar, as aplicações filhas também devem ter este finalizer configurado.
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: default # Projeto padrão do Argo CD
 
