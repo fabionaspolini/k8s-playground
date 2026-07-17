@@ -5,13 +5,13 @@ metadata:
   # namespace: teste # Deve estar no mesmo namespace
 spec:
   rules:
-  - host: whoami.localhost # Substitua pelo seu domínio configurado no DNS
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: whoami # Nome do Service criado acima
-            port:
-              number: 80
+    - host: whoami.localhost # Substitua pelo seu domínio configurado no DNS
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: whoami # Nome do Service criado acima
+                port:
+                  number: 80
