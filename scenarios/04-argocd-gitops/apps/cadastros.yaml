@@ -1,9 +1,9 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: whoami-v1
+  name: cadastros
   # O Argo CD geralmente roda no namespace 'argocd'
-  # namespace: argocd
+  namespace: argocd
 spec:
   project: default # Projeto padrão do Argo CD
 
@@ -21,6 +21,9 @@ spec:
   # 3. POLÍTICA DE SINCRONIZAÇÃO
   syncPolicy:
     automated:
-      prune: true     # Remove do K8s recursos que você apagou do Git
-      selfHeal: true  # Se alguém alterar o cluster manualmente, o Argo CD sobrescreve com o que está no Git
-    createNamespace: true # Cria o namespace 'meu-app-prod' caso ele não exista
+      enabled: true # Enables automated syncing of the application ( true by default ).
+      prune: true     # Remove do K8s recursos que você apagou do Git - Specifies if resources should be pruned during auto-syncing ( false by default ).
+      selfHeal: true  # Se alguém alterar o cluster manualmente, o Argo CD sobrescreve com o que está no Git - Specifies if partial app sync should be executed when resources are changed only in target Kubernetes cluster and no git change detected ( false by default ).
+      allowEmpty: true # Allows deleting all application resources during automatic syncing ( false by default ).
+    syncOptions:
+      - CreateNamespace=true # Cria o namespace 'teste-argocd-v4' caso ele não exista
