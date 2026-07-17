@@ -1,6 +1,6 @@
 appName: fiscal
 
-replicaCount: 3
+replicaCount: 1
 
 ingress:
   host: fiscal.localhost
